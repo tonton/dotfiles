@@ -1,0 +1,30 @@
+export SHELL=/bin/zsh
+export SCREENDIR="/Users/ton/.screen"
+alias gdn='/usr/local/bin/growlnotify -m "Done!"'
+alias 'gitl'='/usr/bin/git log --oneline --color'
+alias 'gitc'='/usr/bin/git commit -am "update"'
+alias 'gits'='/usr/bin/git status'
+
+function rm() {
+if [ -d ~/.Trash ]; then
+  local DATE=`date "+%y%m%d-%H%M%S"`
+  mkdir ~/.Trash/$DATE
+  for i in $@; do
+    if [ -e $i ]; then
+      mv $i ~/.Trash/$DATE/
+    fi
+  done
+else
+  /bin/rm $@
+fi
+}
+
+if [ -f ~/.dircolors ]; then
+  eval `dircolors -c ~/.dircolors`
+fi
+export PATH="$HOME/.nodebrew/current/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH:/usr/local/go/bin"
+export GOPATH=$HOME/go
+export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+
+eval "$(rbenv init -)"
+
