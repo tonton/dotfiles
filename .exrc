@@ -34,11 +34,10 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'YankRing.vim'
+NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'eregex.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-help'
-NeoBundle 'kmnk/vim-unite-giti' " unite source for using git
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'The-NERD-tree'
 NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
@@ -58,7 +57,7 @@ NeoBundle 'thinca/vim-quickrun'
 
 "git
 NeoBundle 'fugitive.vim'
-NeoBundle 'kmnk/vim-unite-giti.git'
+NeoBundle 'kmnk/vim-unite-giti' " unite source for using git
 
 " html
 NeoBundle 'mattn/emmet-vim' " emmet for vim: http://emmet.io/
@@ -126,7 +125,11 @@ let g:Align_xstrlen = 3
 "---------------------------------
 "let g:yankring_history_dir=$HOME . '/.vim/cache/'
 "nnoremap ,<C-p> :YRShow<CR>
-set clipboard+=unnamedplus,unnamed
+if $TMUX == ''
+	set clipboard+=unnamedplus,unnamed
+else
+	set clipboard=
+endif
 
 
 "---------------------------------
@@ -357,7 +360,7 @@ func! String2Hex(str)
     endwhile
     return out
 endfunc
-}}}
+" }}}
 
 colorscheme wombat.cui
 
