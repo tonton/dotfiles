@@ -34,7 +34,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'vim-scripts/YankRing.vim'
+"NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'eregex.vim'
 NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'Shougo/unite-help'
@@ -48,6 +48,7 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'surround.vim'
 NeoBundle 'glennhartmann/vim-indent-guides' "Avim plugin for visually displaying indent levels in code
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tpope/vim-commentary'
 
 
 " debug
@@ -64,7 +65,7 @@ NeoBundle 'mattn/emmet-vim' " emmet for vim: http://emmet.io/
 NeoBundle 'othree/html5-syntax.vim' " HTML5 syntax file for vim.
 NeoBundle 'hail2u/vim-css3-syntax' " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
 "NeoBundle 'html-improved-indentation'
-NeoBundle 'AtsushiM/sass-compile.vim' " Add Sass compile & utility commands.
+"NeoBundle 'AtsushiM/sass-compile.vim' " Add Sass compile & utility commands.
 
 " ruby
 NeoBundle 'vim-ruby/vim-ruby'
@@ -81,9 +82,13 @@ NeoBundle 'JavaScript-Indent'
 NeoBundle 'pekepeke/titanium-vim'
 NeoBundle 'vim-coffee-script'
 NeoBundle 'othree/javascript-syntax.vim' " To improve better support for jsdoc-toolkit and upgrade keyword to current standards.
+NeoBundle 'jshint.vim' " 0.1   A plugin that integrates JSHint with Vim
+NeoBundle 'aurigadl/vim-angularjs' " Configuración para vim, node, javascript, python, sass, angularjs
 
 NeoBundle 'yaml.vim'
 NeoBundle 'cocoa.vim'
+NeoBundle 'martintreurnicht/vim-gradle' " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
+NeoBundle 'vim-scripts/groovy.vim' " syntax file for the groovy programming language
 
 " test
 NeoBundle 'tpope/vim-surround'
@@ -107,6 +112,9 @@ NeoBundle 'h1mesuke/vim-alignta'
 "NeoBundle 'guicolorscheme.vim'
 NeoBundle 'toritori0318/vim-redmine'
 NeoBundle 'DoxygenToolkit.vim'
+NeoBundle 'java.vim' " 1.0   Convenience mappings for Java programming
+NeoBundle 'greplace.vim' " 1.0b1 Replace a pattern across multiple files interactively
+:NeoBundle 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column).
 
 "---------------------------------
 "   zencoding.vim
@@ -125,10 +133,15 @@ let g:Align_xstrlen = 3
 "---------------------------------
 "let g:yankring_history_dir=$HOME . '/.vim/cache/'
 "nnoremap ,<C-p> :YRShow<CR>
-if $TMUX == ''
-	set clipboard+=unnamedplus,unnamed
+if exists('$TMUX')
+	"set clipboard+=unnamedplus,unnamed
+	set clipboard=
+	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
 	set clipboard=
+	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
 
@@ -222,6 +235,10 @@ let g:quickrun_config = {
             \     'command': 'cc',
             \     'exec': ['%c %s -o %s:p:r -framework Foundation', '%s:p:r %a', 'rm -f %s:p:r'],
             \     'tempfile': '{tempname()}.m',
+            \   },
+            \   'gradle': {
+            \     'command': 'gradle',
+            \     'exec' :['gradle test']
             \   }
             \ }
 
@@ -270,14 +287,14 @@ call submode#map('winsize', 'n', '', '-', '<C-w>+')
 " sass
 "------------------------------------
 ""{{{
-let g:sass_compile_auto = 1
-let g:sass_compile_cdloop = 5
-let g:sass_compile_cssdir = ['css', 'stylesheet']
-let g:sass_compile_file = ['scss', 'sass']
-let g:sass_started_dirs = []
+"let g:sass_compile_auto = 1
+"let g:sass_compile_cdloop = 5
+"let g:sass_compile_cssdir = ['css', 'stylesheet']
+"let g:sass_compile_file = ['scss', 'sass']
+"let g:sass_started_dirs = []
  
-autocmd FileType less,sass  setlocal sw=2 sts=2 ts=2 et
-au! BufWritePost * SassCompile
+autocmd FileType less,sass,html,javascript  setlocal sw=2 sts=2 ts=2 et
+"au! BufWritePost * SassCompile
 "}}}
 
 "---------------------------------
@@ -289,6 +306,7 @@ au BufEnter *   execute ":lcd " . expand("%:p:h")
 let g:Powerline_symbols = 'fancy'
 " unmatchbracket
 set matchpairs+=<:>
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " Open junk file."{{{
 command! -nargs=0 JunkFile call s:open_junk_file()

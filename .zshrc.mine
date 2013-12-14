@@ -1,9 +1,46 @@
 export SHELL=/bin/zsh
-export SCREENDIR="/Users/ton/.screen"
+export SCREENDIR="$HOME/.screen"
 alias gdn='/usr/local/bin/growlnotify -m "Done!"'
+
 alias 'gitl'='/usr/bin/git log --oneline --color'
 alias 'gitc'='/usr/bin/git commit -am "update"'
 alias 'gits'='/usr/bin/git status'
+
+
+if [ -f ~/.dircolors ]; then
+  eval `dircolors -c ~/.dircolors`
+fi
+
+if [ -f /usr/local/go/bin]; then
+	export PATH="$HOME/.nodebrew/current/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH:/usr/local/go/bin"
+	export GOPATH=$HOME/go
+	export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+fi
+
+eval "$(rbenv init -)"
+
+#android
+if [ -f $HOME/android-sdks ]; then
+	export ANDROID_HOME=$HOME/android-sdks
+	export PATH=$ANDROID_HOME/platform_tools:$ANDROID_HOME/tools:$PATH
+	export ANDROIDNDK_HOME=/path-to-android_ndk
+	export PATH=$ANDROID_NDK_HOME:$PATH
+fi
+
+# java
+if [ -f /usr/libexec/java_home ]; then
+	export JAVA_HOME=`/usr/libexec/java_home`
+	export JAVA=$JAVA_HOME/bin
+	export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+fi
+
+if [ -f /opt/local/hadoop/hadoop-1.2.1/ ]; then
+	export HADOOP_INSTALL=/opt/local/hadoop/hadoop-1.2.1/
+	export HADOOP_HOME=$HADOOP_INSTALL
+	export HBASE_HOME=/opt/local/hbase/hbase-0.94.11
+	export PATH=$HBASE_HOME/bin:$HADOOP_INSTALL/bin:$PATH
+	export ZK_HOME=/opt/local/zookeeper/zookeeper-3.4.5
+fi
 
 function rm() {
 if [ -d ~/.Trash ]; then
@@ -18,20 +55,3 @@ else
   /bin/rm $@
 fi
 }
-
-if [ -f ~/.dircolors ]; then
-  eval `dircolors -c ~/.dircolors`
-fi
-export PATH="$HOME/.nodebrew/current/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH:/usr/local/go/bin"
-export GOPATH=$HOME/go
-export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
-
-eval "$(rbenv init -)"
-
-#android
-
-export ANDROID_HOME=$HOME/android-sdks
-export PATH=$ANDROID_HOME/platform_tools:$ANDROID_HOME/tools:$PATH
-export ANDROIDNDK_HOME=/path-to-android_ndk
-export PATH=$ANDROID_NDK_HOME:$PATH
-

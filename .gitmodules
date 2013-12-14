@@ -1,0 +1,6 @@
+[submodule "gitignore"]
+	path = gitignore
+	url = git://github.com/github/gitignore.git
+[submodule "vim/bundle/neobundle.vim"]
+	path = vim/bundle/neobundle.vim
+	url = git://github.com/Shougo/neobundle.vim

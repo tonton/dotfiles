@@ -1,0 +1,18 @@
+[core]
+	excludesfile = $HOME/.gitignore
+	editor = /usr/bin/vim
+[include]
+	path = $HOME/.gitconfig.local
+[color]
+	diff = auto
+	branch = auto
+	interactive = auto
+	status = auto
+	ui = auto
+[mergetool]
+	keepBackup = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[http]
+	postBuffer = 524288000
