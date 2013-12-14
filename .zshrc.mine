@@ -11,13 +11,15 @@ if [ -f ~/.dircolors ]; then
   eval `dircolors -c ~/.dircolors`
 fi
 
-if [ -f /usr/local/go/bin]; then
+if [ -f /usr/local/go/bin ]; then
 	export PATH="$HOME/.nodebrew/current/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH:/usr/local/go/bin"
 	export GOPATH=$HOME/go
 	export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 fi
 
-eval "$(rbenv init -)"
+if [ -x rbenv ]; then
+	eval "$(rbenv init -)"
+fi
 
 #android
 if [ -f $HOME/android-sdks ]; then
