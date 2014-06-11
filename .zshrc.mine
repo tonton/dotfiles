@@ -1,26 +1,37 @@
 export SHELL=/bin/zsh
+export EDITOR=vim
 export SCREENDIR="$HOME/.screen"
 alias gdn='/usr/local/bin/growlnotify -m "Done!"'
 
 alias 'gitl'='/usr/bin/git log --oneline --color'
 alias 'gitc'='/usr/bin/git commit -am "update"'
 alias 'gits'='/usr/bin/git status'
+if [ `which rmtrash` ]; then
+	alias rm='rmtrash'
+fi
 
 
 if [ -f ~/.dircolors ]; then
   eval `dircolors -c ~/.dircolors`
 fi
 
-if [ -f /usr/local/go/bin]; then
+if [ -d /usr/local/go/bin ]; then
 	export PATH="$HOME/.nodebrew/current/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH:/usr/local/go/bin"
 	export GOPATH=$HOME/go
 	export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 fi
 
-eval "$(rbenv init -)"
+if [ -d $HOME/.rbenv ]; then
+	export PATH=$HOME/.rbenv/bin:$PATH
+	eval "$(rbenv init -)"
+fi
+
+if [ -d $HOME/.nodebrew/current/bin ]; then
+	export PATH=$HOME/.nodebrew/current/bin:$PATH
+fi
 
 #android
-if [ -f $HOME/android-sdks ]; then
+if [ -d $HOME/android-sdks ]; then
 	export ANDROID_HOME=$HOME/android-sdks
 	export PATH=$ANDROID_HOME/platform_tools:$ANDROID_HOME/tools:$PATH
 	export ANDROIDNDK_HOME=/path-to-android_ndk
@@ -34,7 +45,7 @@ if [ -f /usr/libexec/java_home ]; then
 	export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 fi
 
-if [ -f /opt/local/hadoop/hadoop-1.2.1/ ]; then
+if [ -d /opt/local/hadoop/hadoop-1.2.1/ ]; then
 	export HADOOP_INSTALL=/opt/local/hadoop/hadoop-1.2.1/
 	export HADOOP_HOME=$HADOOP_INSTALL
 	export HBASE_HOME=/opt/local/hbase/hbase-0.94.11
@@ -55,3 +66,4 @@ else
   /bin/rm $@
 fi
 }
+[[ -s /Users/ton/.tmuxinator/scripts/tmuxinator ]] && source /Users/ton/.tmuxinator/scripts/tmuxinator

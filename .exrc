@@ -49,7 +49,8 @@ NeoBundle 'surround.vim'
 NeoBundle 'glennhartmann/vim-indent-guides' "Avim plugin for visually displaying indent levels in code
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-commentary'
-
+NeoBundle 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
+NeoBundle 'kannokanno/previm',  { 'depends' : 'open-browser.vim' }
 
 " debug
 NeoBundle 'thinca/vim-quickrun'
@@ -64,6 +65,7 @@ NeoBundle 'kmnk/vim-unite-giti' " unite source for using git
 NeoBundle 'mattn/emmet-vim' " emmet for vim: http://emmet.io/
 NeoBundle 'othree/html5-syntax.vim' " HTML5 syntax file for vim.
 NeoBundle 'hail2u/vim-css3-syntax' " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+NeoBundle 'vim-scripts/vim-stylus' " Syntax/Indentation for Stylus
 "NeoBundle 'html-improved-indentation'
 "NeoBundle 'AtsushiM/sass-compile.vim' " Add Sass compile & utility commands.
 
@@ -89,6 +91,7 @@ NeoBundle 'yaml.vim'
 NeoBundle 'cocoa.vim'
 NeoBundle 'martintreurnicht/vim-gradle' " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
 NeoBundle 'vim-scripts/groovy.vim' " syntax file for the groovy programming language
+NeoBundle 'hunner/vim-puppet' " The vim syntax files for Puppet. Useful for Vundle
 
 " test
 NeoBundle 'tpope/vim-surround'
@@ -110,8 +113,8 @@ NeoBundle 'h1mesuke/vim-alignta'
 "NeoBundle 'Gundo'
 "NeoBundle 'NERD_tree-Project'
 "NeoBundle 'guicolorscheme.vim'
-NeoBundle 'toritori0318/vim-redmine'
-NeoBundle 'DoxygenToolkit.vim'
+"NeoBundle 'toritori0318/vim-redmine'
+"NeoBundle 'DoxygenToolkit.vim'
 NeoBundle 'java.vim' " 1.0   Convenience mappings for Java programming
 NeoBundle 'greplace.vim' " 1.0b1 Replace a pattern across multiple files interactively
 :NeoBundle 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column).
@@ -272,7 +275,7 @@ let g:undotree_HighlightSyntax = "UnderLined"
 
 " submode.vim
 " http://d.hatena.ne.jp/thinca/20130131/1359567419
-" ウィンドウサイズの変更キーを簡易化する
+" ウィンドウサイズの変set 更キーを簡易化する
 " [C-w],[+]または、[C-w],[-]
 call submode#enter_with('winsize', 'n', '', '<C-w>>', '<C-w>>')
 call submode#enter_with('winsize', 'n', '', '<C-w><', '<C-w><')
@@ -283,19 +286,11 @@ call submode#map('winsize', 'n', '', '<', '<C-w><')
 call submode#map('winsize', 'n', '', '+', '<C-w>-')
 call submode#map('winsize', 'n', '', '-', '<C-w>+')
 
-"------------------------------------
-" sass
-"------------------------------------
-""{{{
-"let g:sass_compile_auto = 1
-"let g:sass_compile_cdloop = 5
-"let g:sass_compile_cssdir = ['css', 'stylesheet']
-"let g:sass_compile_file = ['scss', 'sass']
-"let g:sass_started_dirs = []
- 
-autocmd FileType less,sass,html,javascript  setlocal sw=2 sts=2 ts=2 et
-"au! BufWritePost * SassCompile
-"}}}
+"---------------------------------
+"   markdown
+"---------------------------------
+autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+autocmd Filetype markdown nmap <buffer><silent><Leader>r :PrevimOpen<CR>
 
 "---------------------------------
 "   other
@@ -307,20 +302,8 @@ let g:Powerline_symbols = 'fancy'
 " unmatchbracket
 set matchpairs+=<:>
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+autocmd FileType less,sass,html,javascript  setlocal sw=2 sts=2 ts=2 et
 
-" Open junk file."{{{
-command! -nargs=0 JunkFile call s:open_junk_file()
-function! s:open_junk_file()
-    let l:junk_dir = $HOME . '/.vim_junk'. strftime('/%Y/%m')
-    if !isdirectory(l:junk_dir)
-        call mkdir(l:junk_dir, 'p')
-    endif
-
-    let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d-%H%M%S.'))
-    if l:filename != ''
-        execute 'edit ' . l:filename
-    endif
-endfunction"}}}
 
 "-------------------------------------------------------------------------------
 " ステータスライン StatusLine
@@ -330,55 +313,11 @@ set laststatus=2 " 常にステータスラインを表示
 "カーソルが何行目の何列目に置かれているかを表示する
 set ruler
 
-"let g:Powerline_symbols = 'fancy'
-
-"ステータスラインに文字コードと改行文字を表示する
-" if winwidth(0) >= 120
-"   set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %{g:HahHah()}\ %F%=[%{GetB()}]\ %{fugitive#statusline()}\ %l,%c%V%8P
-" else
-"   set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}%y\ %{g:HahHah()}\ %f%=[%{GetB()}]\ %{fugitive#statusline()}\ %l,%c%V%8P
-" endif
-
-"入力モード時、ステータスラインのカラーを変更
-" augroup InsertHook
-" autocmd!
-" autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340 ctermfg=cyan
-" autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90 ctermfg=white
-" augroup END
 
 "自動的に QuickFix リストを表示する
 "autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 "autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
 
-"{{{
-function! GetB()
-    let c = matchstr(getline('.'), '.', col('.') - 1)
-    let c = iconv(c, &enc, &fenc)
-    return String2Hex(c)
-endfunction
-" help eval-examples
-" The function Nr2Hex() returns the Hex string of a number.
-func! Nr2Hex(nr)
-    let n = a:nr
-    let r = ""
-    while n
-        let r = '0123456789ABCDEF'[n % 16] . r
-        let n = n / 16
-    endwhile
-    return r
-endfunc
-" The function String2Hex() converts each character in a string to a two
-" character Hex string.
-func! String2Hex(str)
-    let out = ''
-    let ix = 0
-    while ix < strlen(a:str)
-        let out = out . Nr2Hex(char2nr(a:str[ix]))
-        let ix = ix + 1
-    endwhile
-    return out
-endfunc
-" }}}
 
 colorscheme wombat.cui
 

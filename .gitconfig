@@ -1,5 +1,5 @@
 [core]
-	excludesfile = $HOME/.gitignore
+	excludesfile = /opt/boxen/config/git/gitignore
 	editor = /usr/bin/vim
 [include]
 	path = $HOME/.gitconfig.local
@@ -16,3 +16,14 @@
 	path = 
 [http]
 	postBuffer = 524288000
+
+[hub]
+protocol = https
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+[user]
+	name = toshiaki.akane
+	email = toshiaki.akane@gmail.com
+[push]
+	default = matching
