@@ -6,3 +6,4 @@ ln -snf ~/dotfiles/.zshrc.mine    ~/.zshrc.mine
 ln -snf ~/dotfiles/.tmux.conf     ~/.tmux.conf
 ln -snf ~/dotfiles/.gitconfig     ~/.gitconfig
 ln -snf ~/dotfiles/.gitignore     ~/.gitignore
+mkdir ~/.vim_back ~/.vim_swap
