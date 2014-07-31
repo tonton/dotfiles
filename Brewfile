@@ -1,12 +1,13 @@
 # Make sure using latest Homebrew
 update
-
-# Update already-installed formula (takes too much time, I will do it manually later)
-# upgrade
+upgrade
 
 # Add Repository
+tap phinze/homebrew-cask
 tap homebrew/versions
 tap homebrew/binary
+tap peco/peco
+tap homebrew-php
 
 # Packages
 
@@ -29,12 +30,21 @@ install proctools
 install markdown
 install docker
 install boot2docker
-
+install jq
+install apple-gcc42
+install readline
+install mcrypt
+install terminal-notifier
+install peco
+install nodebrew
 install rbenv
 install ruby-build
-
-tap phinze/homebrew-cask
-install brew-cask
+install rbenv-gemset
+install rbenv-gem-rehash
+install jsonpp
+install httpie
+install hubflow
+install composer
 
 # .dmg
 cask install alfred
@@ -43,7 +53,6 @@ cask install dropbox
 cask install evernote
 cask install firefox
 cask install google-chrome
-cask install google-chrome-canary
 cask install iterm2
 cask install keyremap4macbook
 cask install kobito

@@ -6,32 +6,24 @@ alias gdn='/usr/local/bin/growlnotify -m "Done!"'
 alias 'gitl'='/usr/bin/git log --oneline --color'
 alias 'gitc'='/usr/bin/git commit -am "update"'
 alias 'gits'='/usr/bin/git status'
-if [ `which rmtrash` ]; then
+if [ `which rmtrash` 2&>1 /dev/null ]; then
 	alias rm='rmtrash'
 fi
+
+REPORTTIME=3
 
 
 if [ -f ~/.dircolors ]; then
   eval `dircolors -c ~/.dircolors`
 fi
-
-if [ -f /usr/local/go/bin ]; then
-	export PATH="$HOME/.nodebrew/current/bin:$HOME/.rbenv/bin:/usr/local/bin:$PATH:/usr/local/go/bin"
-	export GOPATH=$HOME/go
-	export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
-fi
-
-if [ -d $HOME/.rbenv ]; then
-	export PATH=$HOME/.rbenv/bin:$PATH
-	eval "$(rbenv init -)"
-fi
+PATH=/usr/local/bin:$PATH
 
 if [ -d $HOME/.nodebrew/current/bin ]; then
 	export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
-if [ -x rbenv ]; then
-	eval "$(rbenv init -)"
+if which rbenv > /dev/null; then
+	eval "$(rbenv init -)";
 fi
 
 #android
@@ -57,17 +49,4 @@ if [ -d /opt/local/hadoop/hadoop-1.2.1/ ]; then
 	export ZK_HOME=/opt/local/zookeeper/zookeeper-3.4.5
 fi
 
-function rm() {
-if [ -d ~/.Trash ]; then
-  local DATE=`date "+%y%m%d-%H%M%S"`
-  mkdir ~/.Trash/$DATE
-  for i in $@; do
-    if [ -e $i ]; then
-      mv $i ~/.Trash/$DATE/
-    fi
-  done
-else
-  /bin/rm $@
-fi
-}
 [[ -s /Users/ton/.tmuxinator/scripts/tmuxinator ]] && source /Users/ton/.tmuxinator/scripts/tmuxinator
