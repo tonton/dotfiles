@@ -3,11 +3,11 @@ update
 upgrade
 
 # Add Repository
+tap josegonzalez/homebrew-php
 tap phinze/homebrew-cask
 tap homebrew/versions
 tap homebrew/binary
 tap peco/peco
-tap homebrew-php
 
 # Packages
 
@@ -22,6 +22,8 @@ install nkf
 install rmtrash
 install ack
 install ctags
+install cmake
+install mysql
 install lv
 install tree
 install pkg-config
