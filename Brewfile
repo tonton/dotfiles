@@ -4,10 +4,11 @@ upgrade
 
 # Add Repository
 tap josegonzalez/homebrew-php
-tap phinze/homebrew-cask
+tap caskroom/homebrew-cask
 tap homebrew/versions
 tap homebrew/binary
 tap peco/peco
+
 
 # Packages
 
@@ -44,26 +45,34 @@ install ruby-build
 install rbenv-gemset
 install rbenv-gem-rehash
 install jsonpp
+install vim
 install httpie
 install hubflow
 install composer
 
 # .dmg
+upgrade brew-cask
+
+#cask install vagrant
+#cask install wiztoolsorg-restclient
 cask install alfred
 cask install android-studio
+cask install charles
 cask install dropbox
 cask install evernote
+cask install ffluid
 cask install firefox
 cask install google-chrome
+cask install hoster
 cask install iterm2
 cask install keyremap4macbook
 cask install kobito
+cask install mou
 cask install skitch
 cask install skype
 cask install virtualbox
-cask install wiztoolsorg-restclient
-cask install mou
-#cask install vagrant
+
+cask cleanup
 
 # Remove outdated versions
 cleanup
