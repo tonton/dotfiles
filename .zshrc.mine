@@ -4,9 +4,9 @@ export SCREENDIR="$HOME/.screen"
 alias gdn='/usr/local/bin/growlnotify -m "Done!"'
 
 alias 'gitl'='/usr/bin/git log --oneline --color'
-alias 'gitc'='/usr/bin/git commit -am "update"'
+alias 'gitc'='/usr/bin/git commit -am "."'
 alias 'gits'='/usr/bin/git status'
-if [ `which rmtrash` 2&>1 /dev/null ]; then
+if [ `which rmtrash > /dev/null` ]; then
 	alias rm='rmtrash'
 fi
 
@@ -18,12 +18,9 @@ if [ -f ~/.dircolors ]; then
 fi
 PATH=/usr/local/bin:$PATH
 
-if [ -d $HOME/.nodebrew/current/bin ]; then
-	export PATH=$HOME/.nodebrew/current/bin:$PATH
-fi
-
-if which rbenv > /dev/null; then
-	eval "$(rbenv init -)";
+if [ -d $HOME/.anyenv/bin ]; then
+	export PATH=$HOME/.anyenv/bin:$PATH
+	eval "$(anyenv init -)"
 fi
 
 #android

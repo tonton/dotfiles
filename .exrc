@@ -57,6 +57,7 @@ if dein#load_state('/Users/ton/.vim/dein')
   "git
   call dein#add('tpope/vim-fugitive')
   call dein#add('kmnk/vim-unite-giti') " unite source for using git
+  call dein#add('airblade/vim-gitgutter')
 
   " html
   call dein#add('mattn/emmet-vim') " emmet for vim: http://emmet.io/
@@ -108,7 +109,6 @@ let g:Align_xstrlen = 3
 "   yankling.vim
 "---------------------------------
 "let g:yankring_history_dir=$HOME . '/.vim/cache/'
-"nnoremap ,<C-p> :YRShow<CR>
 if exists('$TMUX')
 	"set clipboard+=unnamedplus,unnamed
 	set clipboard=
@@ -181,6 +181,7 @@ nmap <Leader>k :Unite bookmark <CR>
 nmap <Leader>a :UniteAddBookmark 
 nmap <Leader>e :VimFilerCurrentDir <CR>
 nmap <Leader>q :QuickRun <CR>
+nmap <Leader>p :YRShow<CR>
 
 "---------------------------------
 "   gundo
@@ -289,7 +290,6 @@ set ruler
 "自動的に QuickFix リストを表示する
 "autocmd QuickfixCmdPost make,grep,grepadd,vimgrep,vimgrepadd cwin
 "autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
-
 
 colorscheme wombat.cui
 
