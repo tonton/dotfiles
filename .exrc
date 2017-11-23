@@ -2,122 +2,95 @@
 " ==================================
 " 環境に依存する設定
 " ==================================
-
-" backup dir
 set backupdir=$HOME/.vim_back
-"スワップファイル用のディレクトリ
 set directory=$HOME/.vim_swap
-"補完辞書ファイルの置き場所
-"set dictionary=$HOME/.vim/.vim_dic/vim.dict
-"プラグインの置く場所
-set runtimepath+=$ROOT/share/vim/vim70/,$HOME/.vim/
 
-"NeoBundle
-set nocompatible 
-
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+" ==================================
+" plugins
+" ==================================
+if &compatible
+  set nocompatible
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+" Required:
+set runtimepath+=/Users/ton/.vim/dein/repos/github.com/Shougo/dein.vim
 
-"must
-NeoBundle 'Shougo/vimproc', {'build':{
-            \ 'mac':'make -f make_mac.mak',
-            \ 'unix':'make -f make_unix.mak',
-            \ },
-            \ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/unite-outline'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Lokaltog/vim-powerline'
-"NeoBundle 'vim-scripts/YankRing.vim'
-NeoBundle 'eregex.vim'
-NeoBundle 'Shougo/unite-ssh'
-NeoBundle 'Shougo/unite-help'
-NeoBundle 'scrooloose/syntastic.git'
-NeoBundle 'The-NERD-tree'
-NeoBundle 'vim-jp/vimdoc-ja' " A project which translate Vim documents into Japanese.
-NeoBundle 'pasela/unite-webcolorname' "A unite source plugin which provides Web Color Names
-NeoBundle 'mbbill/undotree'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'surround.vim'
-NeoBundle 'glennhartmann/vim-indent-guides' "Avim plugin for visually displaying indent levels in code
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'Shougo/junkfile.vim' " Create temporary file for memo, testing, ...
-NeoBundle 'kannokanno/previm',  { 'depends' : 'open-browser.vim' }
+" Required:
+if dein#load_state('/Users/ton/.vim/dein')
+  call dein#begin('/Users/ton/.vim/dein')
 
-" debug
-NeoBundle 'thinca/vim-quickrun'
-"NeoBundle 'vimgdb'
-"NeoBundle 'debugger.py'
+  " Required:
+  call dein#add('/Users/ton/.vim/dein/repos/github.com/Shougo/dein.vim')
 
-"git
-NeoBundle 'fugitive.vim'
-NeoBundle 'kmnk/vim-unite-giti' " unite source for using git
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/unite-outline')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/neocomplcache')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('tpope/vim-surround')
+  call dein#add('Shougo/vimfiler')
+  call dein#add('Shougo/vimshell')
+  call dein#add('Lokaltog/vim-powerline')
+  call dein#add('vim-scripts/YankRing.vim')
+  call dein#add('othree/eregex.vim')
+  call dein#add('Shougo/unite-ssh')
+  call dein#add('Shougo/unite-help')
+  call dein#add('scrooloose/syntastic.git')
+  call dein#add('vim-jp/vimdoc-ja') " A project which translate Vim documents into Japanese.
+  call dein#add('pasela/unite-webcolorname') "A unite source plugin which provides Web Color Names
+  call dein#add('mbbill/undotree')
+  call dein#add('kana/vim-submode')
+  call dein#add('thinca/vim-ref')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('tpope/vim-commentary')
+  call dein#add('Shougo/junkfile.vim') " Create temporary file for memo, testing, ...
+  call dein#add('kannokanno/previm')
 
-" html
-NeoBundle 'mattn/emmet-vim' " emmet for vim: http://emmet.io/
-NeoBundle 'othree/html5-syntax.vim' " HTML5 syntax file for vim.
-NeoBundle 'hail2u/vim-css3-syntax' " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
-NeoBundle 'vim-scripts/vim-stylus' " Syntax/Indentation for Stylus
-"NeoBundle 'html-improved-indentation'
-"NeoBundle 'AtsushiM/sass-compile.vim' " Add Sass compile & utility commands.
+  " debug
+  call dein#add('thinca/vim-quickrun')
+  "dein#add('vimgdb')
+  "dein#add('debugger.py')
 
-" ruby
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'rails.vim'
-"NeoBundle 'haml.zip'
+  "git
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('kmnk/vim-unite-giti') " unite source for using git
 
-" php
-NeoBundle 'phpcomplete.vim'
-"NeoBundle 'smarty-syntax'
-"NeoBundle 'smarty.vim'
+  " html
+  call dein#add('mattn/emmet-vim') " emmet for vim: http://emmet.io/
+  call dein#add('othree/html5-syntax.vim') " HTML5 syntax file for vim.
+  call dein#add('hail2u/vim-css3-syntax') " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+  call dein#add('vim-scripts/vim-stylus') " Syntax/Indentation for Stylus
+  "dein#add('html-improved-indentation')
+  "dein#add('AtsushiM/sass-compile.vim') " Add Sass compile & utility commands.
 
-" js
-NeoBundle 'JavaScript-Indent'
-NeoBundle 'pekepeke/titanium-vim'
-NeoBundle 'vim-coffee-script'
-NeoBundle 'othree/javascript-syntax.vim' " To improve better support for jsdoc-toolkit and upgrade keyword to current standards.
-NeoBundle 'jshint.vim' " 0.1   A plugin that integrates JSHint with Vim
-NeoBundle 'aurigadl/vim-angularjs' " Configuración para vim, node, javascript, python, sass, angularjs
+  " ruby
+  call dein#add('vim-ruby/vim-ruby')
+  "dein#add('haml.zip')
 
-NeoBundle 'yaml.vim'
-NeoBundle 'cocoa.vim'
-NeoBundle 'martintreurnicht/vim-gradle' " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
-NeoBundle 'vim-scripts/groovy.vim' " syntax file for the groovy programming language
-NeoBundle 'hunner/vim-puppet' " The vim syntax files for Puppet. Useful for Vundle
+  " js
+  call dein#add('othree/javascript-syntax.vim') " To improve better support for jsdoc-toolkit and upgrade keyword to current standards.
+  "call dein#add('aurigadl/vim-angularjs') " Configuración para vim, node, javascript, python, sass, angularjs
 
-" test
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'cucumber.zip'
-NeoBundle 'endwise.vim'
-NeoBundle 'vimwiki'
-NeoBundle 'vim-remote'
-NeoBundle 'newspaper.vim'
-NeoBundle 'xoria256.vim'
-NeoBundle 'findfuncname.vim'
-"NeoBundle 'git://github.com/fifnel/ofaddinbox.vim.git'
-NeoBundle 'proc.vim'
-NeoBundle 'netrw.vim'
-NeoBundle 'Lokaltog/vim-easymotion' " Vim motions on speed!
-"NeoBundle 'vim-scripts/ctrlp.vim' " Fuzzy file and buffer finder with regexp support.
-"NeoBundle 'vim-scripts/browsereload-mac.vim' " vim plugin to reflesh your browser. his plugin works only MacOS.
-NeoBundle 'h1mesuke/vim-alignta'
-"NeoBundle 'taskpaper.vim'
-"NeoBundle 'Gundo'
-"NeoBundle 'NERD_tree-Project'
-"NeoBundle 'guicolorscheme.vim'
-"NeoBundle 'toritori0318/vim-redmine'
-"NeoBundle 'DoxygenToolkit.vim'
-NeoBundle 'java.vim' " 1.0   Convenience mappings for Java programming
-NeoBundle 'greplace.vim' " 1.0b1 Replace a pattern across multiple files interactively
-:NeoBundle 'airblade/vim-gitgutter' " A Vim plugin which shows a git diff in the gutter (sign column).
+  call dein#add('martintreurnicht/vim-gradle') " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
+  call dein#add('vim-scripts/groovy.vim') " syntax file for the groovy programming language
+  "call dein#add('hunner/vim-puppet') " The vim syntax files for Puppet. Useful for Vundle
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
 
 "---------------------------------
 "   zencoding.vim
@@ -263,7 +236,6 @@ let g:indent_guides_start_level= 2
 "{{{
 nmap <Leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_SplitLocation = 'topleft'
 let g:undotree_SplitWidth = 35
 let g:undotree_diffAutoOpen = 1
 let g:undotree_diffpanelHeight = 25
@@ -322,10 +294,3 @@ set ruler
 colorscheme wombat.cui
 
 filetype indent on
-
-if neobundle#exists_not_installed_bundles()
-    echomsg 'Not installed bundles : ' .
-                \ string(neobundle#get_not_installed_bundle_names())
-    echomsg 'Please execute ":NeoBundleInstall" command.'
-    "finish
-endif
