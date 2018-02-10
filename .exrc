@@ -64,15 +64,12 @@ if dein#load_state('/Users/ton/.vim/dein')
   call dein#add('othree/html5-syntax.vim') " HTML5 syntax file for vim.
   call dein#add('hail2u/vim-css3-syntax') " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
   call dein#add('vim-scripts/vim-stylus') " Syntax/Indentation for Stylus
-  "dein#add('html-improved-indentation')
-  "dein#add('AtsushiM/sass-compile.vim') " Add Sass compile & utility commands.
 
   " ruby
   call dein#add('vim-ruby/vim-ruby')
-  "dein#add('haml.zip')
 
   " js
-  call dein#add('othree/javascript-syntax.vim') " To improve better support for jsdoc-toolkit and upgrade keyword to current standards.
+  call dein#add('othree/yajs.vim')
   "call dein#add('aurigadl/vim-angularjs') " Configuración para vim, node, javascript, python, sass, angularjs
 
   call dein#add('martintreurnicht/vim-gradle') " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
