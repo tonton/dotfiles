@@ -9,85 +9,87 @@ set directory=$HOME/.vim_swap
 " plugins
 " ==================================
 if &compatible
-  set nocompatible
+    set nocompatible
 endif
 
 " Required:
-set runtimepath+=/Users/ton/.vim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.vim/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/ton/.vim/dein')
-  call dein#begin('/Users/ton/.vim/dein')
+if dein#load_state($HOME.'/.vim/dein')
+    call dein#begin($HOME.'/.vim/dein')
 
-  " Required:
-  call dein#add('/Users/ton/.vim/dein/repos/github.com/Shougo/dein.vim')
+    " Required:
+    call dein#add($HOME.'/.vim/dein/repos/github.com/Shougo/dein.vim')
 
-  " Add or remove your plugins here:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/unite.vim')
-  call dein#add('Shougo/unite-outline')
-  call dein#add('Shougo/neomru.vim')
-  call dein#add('Shougo/neocomplcache')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('tpope/vim-surround')
-  call dein#add('Shougo/vimfiler')
-  call dein#add('Shougo/vimshell')
-  call dein#add('Lokaltog/vim-powerline')
-  call dein#add('vim-scripts/YankRing.vim')
-  call dein#add('othree/eregex.vim')
-  call dein#add('Shougo/unite-ssh')
-  call dein#add('Shougo/unite-help')
-  call dein#add('scrooloose/syntastic.git')
-  call dein#add('vim-jp/vimdoc-ja') " A project which translate Vim documents into Japanese.
-  call dein#add('pasela/unite-webcolorname') "A unite source plugin which provides Web Color Names
-  call dein#add('mbbill/undotree')
-  call dein#add('kana/vim-submode')
-  call dein#add('thinca/vim-ref')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('Shougo/junkfile.vim') " Create temporary file for memo, testing, ...
-  call dein#add('kannokanno/previm')
+    " Add or remove your plugins here:
+    call dein#add('Shougo/neosnippet.vim')
+    call dein#add('Shougo/neosnippet-snippets')
+    call dein#add('Shougo/unite.vim')
+    call dein#add('Shougo/unite-outline')
+    call dein#add('Shougo/neomru.vim')
+    call dein#add('Shougo/neocomplcache')
+    call dein#add('Shougo/neosnippet')
+    call dein#add('tpope/vim-surround')
+    call dein#add('Shougo/vimfiler')
+    call dein#add('Shougo/vimshell')
+    call dein#add('Lokaltog/vim-powerline')
+    call dein#add('vim-scripts/YankRing.vim')
+    call dein#add('othree/eregex.vim')
+    call dein#add('Shougo/unite-ssh')
+    call dein#add('Shougo/unite-help')
+    call dein#add('scrooloose/syntastic.git')
+    call dein#add('vim-jp/vimdoc-ja') " A project which translate Vim documents into Japanese.
+    call dein#add('pasela/unite-webcolorname') "A unite source plugin which provides Web Color Names
+    call dein#add('mbbill/undotree')
+    call dein#add('kana/vim-submode')
+    call dein#add('thinca/vim-ref')
+    call dein#add('scrooloose/nerdcommenter')
+    call dein#add('tpope/vim-commentary')
+    call dein#add('Shougo/junkfile.vim') " Create temporary file for memo, testing, ...
+    call dein#add('previm/previm')
 
-  " debug
-  call dein#add('thinca/vim-quickrun')
-  "dein#add('vimgdb')
-  "dein#add('debugger.py')
+    " debug
+    call dein#add('thinca/vim-quickrun')
+    "dein#add('vimgdb')
+    "dein#add('debugger.py')
 
-  "git
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('kmnk/vim-unite-giti') " unite source for using git
-  call dein#add('airblade/vim-gitgutter')
+    " git
+    call dein#add('tpope/vim-fugitive')
+    call dein#add('kmnk/vim-unite-giti') " unite source for using git
+    call dein#add('airblade/vim-gitgutter')
 
-  " html
-  call dein#add('mattn/emmet-vim') " emmet for vim: http://emmet.io/
-  call dein#add('othree/html5-syntax.vim') " HTML5 syntax file for vim.
-  call dein#add('hail2u/vim-css3-syntax') " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
-  call dein#add('vim-scripts/vim-stylus') " Syntax/Indentation for Stylus
+    " html
+    call dein#add('mattn/emmet-vim') " emmet for vim: http://emmet.io/
+    call dein#add('othree/html5-syntax.vim') " HTML5 syntax file for vim.
+    call dein#add('hail2u/vim-css3-syntax') " Add CSS3 syntax support to vim's built-in `syntax/css.vim`.
+    call dein#add('vim-scripts/vim-stylus') " Syntax/Indentation for Stylus
 
-  " ruby
-  call dein#add('vim-ruby/vim-ruby')
+    " ruby
+    call dein#add('vim-ruby/vim-ruby')
 
-  " js
-  call dein#add('othree/yajs.vim')
-  "call dein#add('aurigadl/vim-angularjs') " Configuración para vim, node, javascript, python, sass, angularjs
+    " markdown
+    call dein#add('plasticboy/vim-markdown')
 
-  call dein#add('martintreurnicht/vim-gradle') " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
-  call dein#add('vim-scripts/groovy.vim') " syntax file for the groovy programming language
-  "call dein#add('hunner/vim-puppet') " The vim syntax files for Puppet. Useful for Vundle
+    " js
+    call dein#add('othree/yajs.vim')
+    call dein#add('leafgarland/typescript-vim')
+    call dein#add('posva/vim-vue')
+    call dein#add('MaxMEllon/vim-jsx-pretty')
 
-  " Required:
-  call dein#end()
-  call dein#save_state()
+    call dein#add('martintreurnicht/vim-gradle') " vundle bundle to enable gradle syntax hightlighting (requires groovy plugin)
+    call dein#add('vim-scripts/groovy.vim') " syntax file for the groovy programming language
+    "call dein#add('hunner/vim-puppet') " The vim syntax files for Puppet. Useful for Vundle
+
+    " Required:
+    call dein#end()
+    call dein#save_state()
 endif
 
-" Required:
-filetype plugin indent on
-syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+    call dein#install()
 endif
 
 "---------------------------------
@@ -107,14 +109,14 @@ let g:Align_xstrlen = 3
 "---------------------------------
 "let g:yankring_history_dir=$HOME . '/.vim/cache/'
 if exists('$TMUX')
-	"set clipboard+=unnamedplus,unnamed
-	set clipboard=
-	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    "set clipboard+=unnamedplus,unnamed
+    set clipboard=
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 else
-	set clipboard=
-	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    set clipboard=
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
 
@@ -261,6 +263,13 @@ call submode#map('winsize', 'n', '', '-', '<C-w>+')
 "---------------------------------
 autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 autocmd Filetype markdown nmap <buffer><silent><Leader>r :PrevimOpen<CR>
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+
+
+"---------------------------------
+" typescript
+"---------------------------------
+autocmd BufNewFile,BufRead *.{ts,tsx} set filetype=typescript
 
 "---------------------------------
 "   other
@@ -289,5 +298,5 @@ set ruler
 "autocmd QuickfixCmdPost lmake,lgrep,lgrepadd,lvimgrep,lvimgrepadd lwin
 
 colorscheme wombat.cui
-
-filetype indent on
+filetype plugin indent on
+syntax enable

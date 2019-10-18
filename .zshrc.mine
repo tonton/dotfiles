@@ -3,9 +3,10 @@ export EDITOR=vim
 export SCREENDIR="$HOME/.screen"
 alias gdn='/usr/local/bin/growlnotify -m "Done!"'
 
-alias 'gitl'='/usr/bin/git log --oneline --color'
-alias 'gitc'='/usr/bin/git commit -am "."'
-alias 'gits'='/usr/bin/git status'
+alias 'gl'='/usr/bin/git log --oneline --color'
+alias 'gc'='/usr/bin/git commit -am "."'
+alias 'gs'='/usr/bin/git status'
+alias lg='lazygit'
 if [ `which rmtrash > /dev/null` ]; then
 	alias rm='rmtrash'
 fi
@@ -16,11 +17,16 @@ REPORTTIME=3
 if [ -f ~/.dircolors ]; then
   eval `dircolors -c ~/.dircolors`
 fi
-PATH=/usr/local/bin:$PATH
+PATH=$HOME/dotfiles/bin:/usr/local/bin:$PATH
 
 if [ -d $HOME/.anyenv/bin ]; then
 	export PATH=$HOME/.anyenv/bin:$PATH
-	eval "$(anyenv init -)"
+	eval "$(anyenv init - zsh)"
+fi
+
+if [ -d $HOME/go/bin ]; then
+	export GOPATH=$HOME/go/bin
+	export PATH=$GOPATH:$PATH
 fi
 
 #android
@@ -44,6 +50,10 @@ if [ -d /opt/local/hadoop/hadoop-1.2.1/ ]; then
 	export HBASE_HOME=/opt/local/hbase/hbase-0.94.11
 	export PATH=$HBASE_HOME/bin:$HADOOP_INSTALL/bin:$PATH
 	export ZK_HOME=/opt/local/zookeeper/zookeeper-3.4.5
+fi
+
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
 fi
 
 [[ -s /Users/ton/.tmuxinator/scripts/tmuxinator ]] && source /Users/ton/.tmuxinator/scripts/tmuxinator

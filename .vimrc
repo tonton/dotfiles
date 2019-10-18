@@ -17,11 +17,11 @@ set clipboard+=unnamed
 "Vi互換をオフ
 set nocompatible
 "タブの代わりに空白文字を挿入する
-set noexpandtab
+set expandtab
 "ファイル内の <Tab> が対応する空白の数
-set tabstop=4
+set tabstop=2   
 "行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする。
-set shiftwidth=4
+set shiftwidth=2
 set smarttab
 "変更中のファイルでも、保存しないで他のファイルを表示
 set hidden
